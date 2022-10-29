@@ -1,39 +1,59 @@
-function AltArrange(arr, size) {
-  // temporary array to hold modified array
-  let temp = new Array(size);
+const prompt = require("prompt-sync")({ sigint: true });
 
-  let low = 0,
-    high = size - 1; //setting indexes of lowest and highest number
+obj = {
+  espresso: { milk: 60, cream: 75, latte: 100 },
+  cappuccino: { milk: 80, cream: 90, latte: 120 },
+  Latte: { milk: 100, cream: 125, latte: 150 },
+};
 
-  let flag = true;
-
-  // Store result in temp[]
-  for (let i = 0; i < size; i++) {
-    if (flag) {
-      temp[i] = arr[high];
-      high--;
-    } else temp[i] = arr[low++];
-
-    flag = !flag;
+class CoffeeHouse {
+  constructor() {
+    this.coffeeName = undefined;
+    this.addOn = undefined;
+    this.quantity = undefined;
   }
 
-  // Copy temp[] to arr[]
-  for (let i = 0; i < size; i++) {
-    arr[i] = temp[i];
+  // getter
+  get coffeeName() {
+    return this.name;
+  }
+
+  get addOnName() {
+    return this.addOn;
+  }
+
+  get Quantity(){
+    return this.quantity;
+  }
+
+
+  // setter
+  set coffeeName(x) {
+    this.name = x;
+  }
+
+  set addOnName(y) {
+    this.addOn = y;
+  }
+
+  set Quantity(z){
+    this.quantity = z;
+  }
+
+  buyCoffee(cName,aName,quantity){
+    this.coffeeName = cName;
+    this.addOnName = aName;
+    this.quantity = quantity;
+  }
+
+
+  bill() {
+    console.log(this.coffeeName, this.addOnName, this.quantity);
   }
 }
 
-// Driver code
-let arr = [2, 4, 6, 8, 10];
-let size = arr.length;
+let c = new CoffeeHouse();
+c.buyCoffee('espresso','milk',1);
+c.bill();
 
-console.log("Initial Array");
-var str = arr.join(" ");
-console.log(str);
-
-AltArrange(arr, size);
-
-console.log("Modified Array");
-for (let i = 0; i < size; i++) {
-  console.log(arr[i] + " ");
-}
+console.log(c);
